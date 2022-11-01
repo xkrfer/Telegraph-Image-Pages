@@ -20,7 +20,7 @@
       </div>
       <div class="text-area">
         <span>
-          可直接截图并粘贴或拖拽到这里
+          可直接截图并粘贴或拖拽到这里，仅限gif、jpeg、jpg、png，图片限制5M以内
         </span>
       </div>
       <div class="upload-btn">
@@ -34,9 +34,15 @@
 
 <script lang="ts" setup>
 import { STATUS } from "./constant"
+import {ElMessage} from "element-plus";
 const accept = ['gif','jpeg','jpg','png'].map(type => `image/${type}`).join(',')
 const emit  = defineEmits(["change"])
+const MAX_SIZE = 5 *  1024 * 1024
 const onBeforeUpload = (raw: any) => {
+  if(raw.size > MAX_SIZE){
+    ElMessage.error('图片大小不能超过 5MB！')
+    return false
+  }
   emit("change", STATUS.UPLOADING)
 }
 const onSuccess = (response:any) => {

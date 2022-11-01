@@ -102,7 +102,7 @@ const goBack = () => {
   }
 }
 .text-area{
-  padding: 50px 0 10px;
+  padding: 30px 0 0;
   font-size: 12px;
   text-align: center;
   span{
