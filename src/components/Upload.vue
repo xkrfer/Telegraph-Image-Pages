@@ -18,7 +18,7 @@ import Error from "./Error.vue"
 import {ref} from "vue";
 import {STATUS} from "./constant"
 
-const status = ref<STATUS>(STATUS.DONE)
+const status = ref<STATUS>(STATUS.WAITING)
 const file = ref<string>()
 
 const onChange = (state: STATUS, files:any) => {
