@@ -46,7 +46,7 @@ const url = computed(() => {
 })
 
 const markdownUrl = computed(() => {
-  return `![img](${props.file})`
+  return `![img](${url.value})`
 })
 
 
