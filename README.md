@@ -1,16 +1,25 @@
-# Vue 3 + TypeScript + Vite
+# Telegraph-Image-Pages
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+Self-built image hosting, using Cloudflare Pages and Telegraph, UI and Cloudflare Functions from [cf-pages/Telegraph-Image](https://github.com/cf-pages/Telegraph-Image)
 
-## Recommended IDE Setup
+## How to use
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
+1. You should prepare a [cloudflare](https://www.cloudflare.com/) account and [ github](https://github.com/) account.
 
-## Type Support For `.vue` Imports in TS
+2. Fork this repository
 
-Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
+3. Open the Cloudflare pages and Connect you git
+   ![pages](./md/connect-git.png)
+   ![connect-git](./md/connect-git-2.png)
+4. Select the repository you just forked
+   ![select-repo](./md/select-repo.png)
 
-1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
-2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
+5. Configure the parameters required to build the project
+   ![build-1](./md/build-1.png)
+   ![build-2](./md/build-2.png)
+6. After the configuration is complete, start the build
+7. If there is no accident, the following figure appears to indicate that the build is successful
+   ![success](./md/success.png)
+8. Click the link above to see that the project has been deployed successfully
+   ![ok](./md/ok.png)
 
-You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).
