@@ -14,7 +14,7 @@ Self-built image hosting, using Cloudflare Pages and Telegraph, UI and Cloudflar
 
 2. Fork this repository
 
-3. Open the Cloudflare pages and Connect you git
+3. Open the Cloudflare pages and Connect your git
    ![pages](./md/connect-git.png)
    ![connect-git](./md/connect-git-2.png)
 4. Select the repository you just forked
