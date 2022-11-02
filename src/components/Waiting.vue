@@ -29,18 +29,29 @@
         </el-button>
       </div>
     </el-upload>
+    <div class="advanced" @click.stop>
+      <el-tooltip
+          effect="light"
+          content="图片大小超过限制会自动进行压缩"
+          placement="top-start"
+      >
+        <el-checkbox class="compress" v-model="compress" size="small"  @click.stop>压缩图片</el-checkbox>
+      </el-tooltip>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import {STATUS} from "./constant"
 import {ElMessage} from "element-plus";
-import { watch} from "vue";
+import {ref, watch} from "vue";
 import {usePaste} from "../hooks/usePaste";
 import {postUpload} from "../api";
+import { compressFile } from "../utils/compressFile"
 const accept = ['gif','jpeg','jpg','png'].map(type => `image/${type}`).join(',')
 const emit  = defineEmits(["change"])
 const MAX_SIZE = 5 *  1024 * 1024
+const compress = ref(false)
 const props = defineProps({
   show: {
     type: Boolean,
@@ -48,13 +59,18 @@ const props = defineProps({
   }
 })
 
-const onBeforeUpload = (raw: any) => {
+const onBeforeUpload = async (raw: any) => {
+  let result = raw
   if(raw.size > MAX_SIZE){
-    ElMessage.error('图片大小不能超过 5MB！')
-    return false
+    if(!compress.value){
+      ElMessage.error('图片大小不能超过 5MB！')
+      return false
+    }else{
+      result =  await compressFile(raw)
+    }
   }
   emit("change", STATUS.UPLOADING)
-  return  true
+  return result
 }
 const onSuccess = (response:any) => {
   setTimeout(() => {
@@ -95,14 +111,15 @@ watch(paste, () => {
 })
 
 
-
 </script>
 
 <style lang="less" scoped>
 .upload-drag{
+  padding: 10px 40px;
   :deep(.el-upload-dragger){
     border: none;
     cursor: auto;
+    padding: 15px 0;
   }
 }
 .svg-wrapper{
@@ -155,6 +172,14 @@ watch(paste, () => {
   to {
     transform: scale(1.5);
     border: 1px solid rgba(199,207,215,.1)
+  }
+}
+
+.advanced{
+  height: 44px;
+  padding: 10px 40px;
+  .compress{
+    font-size: 12px;
   }
 }
 </style>

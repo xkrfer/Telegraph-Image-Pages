@@ -15,7 +15,7 @@ import Waiting from "./Waiting.vue"
 import Uploading from "./Uploading.vue"
 import Done from "./Done.vue"
 import Error from "./Error.vue"
-import {computed, ref} from "vue";
+import {ref} from "vue";
 import {STATUS} from "./constant"
 
 const status = ref<STATUS>(STATUS.WAITING)
