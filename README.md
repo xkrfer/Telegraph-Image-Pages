@@ -2,6 +2,12 @@
 
 Self-built image hosting, using Cloudflare Pages and Telegraph, UI and Cloudflare Functions from [cf-pages/Telegraph-Image](https://github.com/cf-pages/Telegraph-Image)
 
+## Feature
+
+1. Paste, drag or upload images manually
+
+2. Compress image
+
 ## How to use
 
 1. You should prepare a [cloudflare](https://www.cloudflare.com/) account and [ github](https://github.com/) account.
@@ -23,3 +29,6 @@ Self-built image hosting, using Cloudflare Pages and Telegraph, UI and Cloudflar
 8. Click the link above to see that the project has been deployed successfully
    ![ok](./md/ok.png)
 
+## Thanks
+
+This project has been transplanted on the basis of [cf-pages/Telegraph-Image](https://github.com/cf-pages/Telegraph-Image)
