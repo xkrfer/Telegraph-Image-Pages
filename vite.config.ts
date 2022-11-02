@@ -34,5 +34,7 @@ export default defineConfig({
         Icons({
             autoInstall: true,
         }),
-    ]
+    ],
+    server: {
+    }
 })

@@ -2,7 +2,7 @@
   <div class="upload">
     <div class="title">Telegraph-Image-Pages</div>
     <div class="upload-main">
-        <Waiting v-show="status === 0" @change="onChange"/>
+        <Waiting v-show="status === 0" @change="onChange" :show="status === 0"/>
         <Uploading v-show="status === 1"/>
         <Done v-show="status === 2" :file="file" @back="reUpload"/>
         <Error v-show="status === 3"/>
@@ -15,7 +15,7 @@ import Waiting from "./Waiting.vue"
 import Uploading from "./Uploading.vue"
 import Done from "./Done.vue"
 import Error from "./Error.vue"
-import {ref} from "vue";
+import {computed, ref} from "vue";
 import {STATUS} from "./constant"
 
 const status = ref<STATUS>(STATUS.WAITING)

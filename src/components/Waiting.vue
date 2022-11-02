@@ -33,17 +33,28 @@
 </template>
 
 <script lang="ts" setup>
-import { STATUS } from "./constant"
+import {STATUS} from "./constant"
 import {ElMessage} from "element-plus";
+import { watch} from "vue";
+import {usePaste} from "../hooks/usePaste";
+import {postUpload} from "../api";
 const accept = ['gif','jpeg','jpg','png'].map(type => `image/${type}`).join(',')
 const emit  = defineEmits(["change"])
 const MAX_SIZE = 5 *  1024 * 1024
+const props = defineProps({
+  show: {
+    type: Boolean,
+    default: true
+  }
+})
+
 const onBeforeUpload = (raw: any) => {
   if(raw.size > MAX_SIZE){
     ElMessage.error('图片大小不能超过 5MB！')
     return false
   }
   emit("change", STATUS.UPLOADING)
+  return  true
 }
 const onSuccess = (response:any) => {
   setTimeout(() => {
@@ -56,6 +67,35 @@ const onError = () => {
     emit("change", STATUS.ERROR)
   },200)
 }
+const { clipboardFile, paste } = usePaste()
+const uploadPasteImg = async () => {
+  const file = clipboardFile.value
+  clipboardFile.value = undefined
+  const pass = onBeforeUpload(file)
+  if(!pass) return
+  const response: any = await postUpload(file).catch(() => {
+    onError()
+  })
+  if(response.status === 200 && response.data && response.data.length > 0){
+      onSuccess(response.data)
+  }else{
+    onError()
+  }
+}
+
+
+watch(paste, () => {
+  if(!props.show) return
+  const { type } = clipboardFile.value
+  if(accept.includes(type)){
+    uploadPasteImg()
+  }else{
+    ElMessage.error('文件格式不正确！')
+  }
+})
+
+
+
 </script>
 
 <style lang="less" scoped>
