@@ -14,7 +14,8 @@
     "browser-image-compression": "^2.0.0",
     "copy-to-clipboard": "^3.3.2",
     "element-plus": "^2.2.19",
-    "vue": "^3.2.41"
+    "vue": "^3.2.41",
+    "vue-router": "^4.1.6"
   },
   "devDependencies": {
     "@types/node": "^18.11.9",
