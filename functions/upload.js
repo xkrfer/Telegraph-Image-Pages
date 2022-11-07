@@ -7,7 +7,7 @@ export async function onRequestPost(context) {  // Contents of context object
         headers: request.headers,
         body: request.body,
     });
-    const response = await res.json()
+    const response = await res.clone().json()
     /** 是否有IMAGES这个KV */
     if (IMAGES && Array.isArray(response) && response.length === 1) {
         const src = response[0].src
