@@ -1,4 +1,4 @@
-export async function onRequestPost(context) {  // Contents of context object
+export async function onRequest(context) {  // Contents of context object
     const { request, env} = context;
     const {  MODERATE_CONTENT_API_KEY }  = env
     const url = new URL(request.url);
