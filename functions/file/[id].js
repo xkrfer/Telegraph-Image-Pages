@@ -4,19 +4,18 @@ export async function onRequest(context) {  // Contents of context object
     const {MODERATE_CONTENT_API_KEY, IMAGES} = env
     const {pathname, search} = url
     // if (IMAGES) {
-        const src = `${pathname}${search}`
-        const userId = IMAGES.get(src)
+        const userId = IMAGES.get(pathname)
         if (!userId) {
             return Response.redirect(url.origin + "/404.png", 302)
         }
     // }
 
     return  new Response(JSON.stringify({
-        userId,
+        userId: JSON.stringify(userId),
         pathname,
         search
     }))
-    // const FILE_URL = `https://telegra.ph/${pathname}${search}`
+    // const FILE_URL = `https://telegra.ph${pathname}${search}`
     // if (typeof MODERATE_CONTENT_API_KEY === 'string' && MODERATE_CONTENT_API_KEY !== '') {
     //     const res = await fetch(`https://api.moderatecontent.com/moderate?key=${MODERATE_CONTENT_API_KEY}&url=${FILE_URL}`);
     //     const response = await res.json()
