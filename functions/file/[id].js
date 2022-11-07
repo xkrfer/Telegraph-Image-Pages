@@ -4,7 +4,7 @@ export async function onRequest(context) {  // Contents of context object
     const {MODERATE_CONTENT_API_KEY, IMAGES} = env
     const {pathname, search} = url
     // if (IMAGES) {
-        const src = `/${pathname}${search}`
+        const src = `${pathname}${search}`
         const userId = IMAGES.get(src)
         if (!userId) {
             return Response.redirect(url.origin + "/404.png", 302)
