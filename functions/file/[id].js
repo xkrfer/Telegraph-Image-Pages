@@ -10,6 +10,7 @@ export async function onRequest(context) {  // Contents of context object
         if(response.rating_label === 'adult'){
             return Response.redirect(url.origin+"/block", 302)
         }
+        return res
     }
     return fetch(FILE_URL, {
         method: request.method,
